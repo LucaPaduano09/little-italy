@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss'
-const {nextui} = require("@nextui-org/React");
+const {nextui} = require("@nextui-org/react");
 
 const config: Config = {
   

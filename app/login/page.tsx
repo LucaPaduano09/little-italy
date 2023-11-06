@@ -3,7 +3,7 @@ import { Button, Spacer } from "@nextui-org/react";
 import { signIn } from "next-auth/react";
 import React, { useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [loginSelected, setLoginSelected] = useState<boolean>(true);
   const googleLogin = () => {
     signIn("google", { callbackUrl: "/" });
@@ -91,4 +91,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

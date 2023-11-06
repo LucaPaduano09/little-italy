@@ -2,6 +2,8 @@ import Navbaro from "@/components/Navbar/Navbar";
 import Products from "@/components/Products/Products";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import { SessionProvider } from "next-auth/react";
+import { Session } from "next-auth";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);

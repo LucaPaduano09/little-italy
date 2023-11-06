@@ -36,43 +36,45 @@ const Products = () => {
           </Button>
         </CardFooter>
       </Card>
-      <div className="w-[100vw] flex justify-center items-center p-1 mt-6 mb-6">
-        <Card className="flex-1 h-[300px] m-1" isPressable>
-          <CardHeader className="absolute z-10 top-1 flex-col !items-start">
-            <p className="text-tiny text-gray/60 uppercase font-bold">
-              Best Seller pasta
-            </p>
-            <h4 className="text-gray font-medium text-large">Little Italy</h4>
-          </CardHeader>
-          <Image
-            removeWrapper
-            alt="Card background"
-            className="z-0 w-full h-full object-cover"
-            src="./pasta1.webp"
-          />
-          <CardFooter className="text-small justify-between">
-            <b>{"item.title"}</b>
-            <p className="text-default-500">{"7.99"}</p>
-          </CardFooter>
-        </Card>
-        <Card className="flex-1 h-[300px] m-1" isPressable>
-          <CardHeader className="absolute z-10 top-1 flex-col !items-start">
-            <p className="text-tiny text-gray/60 uppercase font-bold">
-              Enjoy our
-            </p>
-            <h4 className="text-gray font-medium text-large">Mozzarella</h4>
-          </CardHeader>
-          <Image
-            removeWrapper
-            alt="Card background"
-            className="z-0 w-full h-full object-cover"
-            src="./mozzarella.jpg"
-          />
-          <CardFooter className="text-small justify-between">
-            <b>{"item.title"}</b>
-            <p className="text-default-500">{"7.99"}</p>
-          </CardFooter>
-        </Card>
+      <div className="w-[100vw] flex justify-center items-center p-1 mt-6 mb-6 overflow:hidden">
+        <div className="flex overflow-x-auto">
+          <Card className="flex-1  h-[300px] m-1" isPressable>
+            <CardHeader className="absolute z-10 top-1 flex-col !items-start">
+              <p className="text-tiny text-gray/60 uppercase font-bold">
+                Best Seller pasta
+              </p>
+              <h4 className="text-gray font-medium text-large">Little Italy</h4>
+            </CardHeader>
+            <Image
+              removeWrapper
+              alt="Card background"
+              className="z-0 w-full h-full object-cover"
+              src="./pasta1.webp"
+            />
+            <CardFooter className="text-small justify-between">
+              <b>{"item.title"}</b>
+              <p className="text-default-500">{"7.99"}</p>
+            </CardFooter>
+          </Card>
+          <Card className="flex-1  h-[300px] m-1" isPressable>
+            <CardHeader className="absolute z-10 top-1 flex-col !items-start">
+              <p className="text-tiny text-gray/60 uppercase font-bold">
+                Enjoy our
+              </p>
+              <h4 className="text-gray font-medium text-large">Mozzarella</h4>
+            </CardHeader>
+            <Image
+              removeWrapper
+              alt="Card background"
+              className="z-0 w-full h-full object-cover"
+              src="./mozzarella.jpg"
+            />
+            <CardFooter className="text-small justify-between">
+              <b>{"item.title"}</b>
+              <p className="text-default-500">{"7.99"}</p>
+            </CardFooter>
+          </Card>
+        </div>
       </div>
       <div className="w-[100vw]">
         <Card className="flex-1 h-[300px] m-2" isPressable>

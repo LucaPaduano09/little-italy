@@ -41,12 +41,15 @@ const SelectComponent = (product: any) => {
         <SelectItem key="Pasta">Pasta</SelectItem>
       </Select>
       {products?.map((pr: any) => (
-        <div className="w-full flex items-center justify-center flex-col mb-7">
+        <div
+          key={pr._id}
+          className="w-full flex items-center justify-center flex-col mb-7"
+        >
           <Link
             href={"/prodotti/" + pr._id}
             className="w-full flex items-center justify-center flex-col text-black"
           >
-            <Image width={200} height={200} src={pr.image} />
+            <Image width={200} height={200} src={pr.image} alt={pr.image} />
             <h1 className="font-bold">{pr.name}</h1>
             <p>{pr.description}</p>
             <p>{pr.price}</p>

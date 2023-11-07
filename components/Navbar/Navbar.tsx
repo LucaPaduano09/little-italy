@@ -24,7 +24,7 @@ const Navbaro = (props: any) => {
 
   const menuItems = [
     { title: "Home", href: "/" },
-    { title: "Products", href: "/" },
+    { title: "Products", href: "/prodotti" },
     { title: "Support", href: "/" },
     // "Dashboard",
     // "Activity",

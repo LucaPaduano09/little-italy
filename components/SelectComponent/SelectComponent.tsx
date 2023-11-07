@@ -1,5 +1,6 @@
 "use client";
 import {
+  Divider,
   Image,
   Link,
   Select,
@@ -12,7 +13,6 @@ const SelectComponent = (product: any) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [products, setProducts] = useState(product.products);
   useEffect(() => {
-    console.log(selectedCategory);
     if (selectedCategory !== "all") {
       setProducts(
         product.products.filter((pr: any) => pr.category === selectedCategory)
@@ -40,7 +40,7 @@ const SelectComponent = (product: any) => {
 
         <SelectItem key="Pasta">Pasta</SelectItem>
       </Select>
-      {products?.map((pr: any) => (
+      {products?.map((pr: any, index: number) => (
         <div
           key={pr._id}
           className="w-full flex items-center justify-center flex-col mb-7"
@@ -52,8 +52,11 @@ const SelectComponent = (product: any) => {
             <Image width={200} height={200} src={pr.image} alt={pr.image} />
             <h1 className="font-bold">{pr.name}</h1>
             <p>{pr.description}</p>
-            <p>{pr.price}</p>
+            <p>{"€" + pr.price}</p>
           </Link>
+          {index !== products.length - 1 && (
+            <Divider className="w-[80%] my-4" />
+          )}
         </div>
       ))}
     </>

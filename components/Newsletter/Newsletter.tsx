@@ -1,7 +1,6 @@
 "use client";
 import { Button, Image, Input } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
-import User from "@/models/user";
 
 const Newsletter = (props: any) => {
   const [timer, setTimer] = useState(false);

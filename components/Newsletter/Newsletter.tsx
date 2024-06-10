@@ -31,19 +31,24 @@ const Newsletter = (props: any) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 2 }}
-              className="fixed t-0 left-0 w-full h-full bg-black bg-opacity-40"
+              className="fixed t-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center "
             />
-            <div className="h-[700px] fixed z-50 w-full bottom-20 left-0 bg-white flex items-center justify-center flex-col">
-              <div className="flex flex-1 w-full">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ ease: "easeOut", duration: 1.3 }}
+              className="h-[580px] fixed z-50 w-[95vw] bg-white flex items-center justify-center flex-col bottom-2"
+            >
+              <div className="flex w-full flex-1">
                 <Image
                   src="./food-newsletter.jpg"
                   alt="image"
-                  style={{ width: "100%", height: "100%" }}
+                  style={{ width: "100%", height: "80%" }}
                   radius="none"
                 />
               </div>
-              <div className="flex flex-1 w-[90%] flex-col justify-center">
-                <h1 className="text-lg">Iscriviti alla newsletter</h1>
+              <div className="flex flex-1 w-[90%] flex-col justify-start">
+                <h1 className="text-lg m-0 p-0">Iscriviti alla newsletter</h1>
                 <h3>e ricevi subito il 15% di sconto sul tuo primo ordine</h3>
                 <div className="w-full flex-col flex items-center justify-center">
                   <Input
@@ -70,7 +75,7 @@ const Newsletter = (props: any) => {
               >
                 x
               </button>
-            </div>
+            </motion.div>
           </>
         )}
     </>

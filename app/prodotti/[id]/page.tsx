@@ -1,27 +1,58 @@
-import SingleProduct from "@/components/SingleProduct/SingleProduct";
-import { headers } from "next/headers";
-import { notFound } from "next/navigation";
-import React from "react";
+"use client";
+import { Button, Image } from "@nextui-org/react";
+import { notFound, useParams, useSearchParams } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
-async function getProducts() {
-  const res = await fetch(process.env.BASE_ENDOPOINT + "/products", {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    return notFound();
-  }
-  return res.json();
-}
+const page = () => {
+  const params = useParams();
+  const { id } = params;
+  const [product, setProduct] = useState<any>();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const page = async () => {
-  const headersList = headers();
-  const fullUrl = headersList.get("referer") || "";
-  const id = fullUrl.replace("http://localhost:3000/prodotti/", "");
-  const products = await getProducts();
-  const singleProduct = products.filter((pr: any) => pr._id === id);
+  useEffect(() => {
+    if (id) {
+      // Fetch the product data from your API
+      fetch(`http://localhost:3000/api/product/${id}`, {
+        method: "GET",
+        mode: "no-cors",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setProduct(data);
+          setLoading(false);
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching product:", error);
+          setError(error);
+          setLoading(false);
+        });
+    }
+  }, [id]);
   return (
     <div className="mt-[4rem]">
-      {singleProduct && <SingleProduct product={singleProduct[0]} />}
+      {product && (
+        <div className="flex flex-col items-center justify-center">
+          <div>
+            <Image src={"/" + product?.image} />
+          </div>
+          <div className="w-[90vw]">
+            <h1 className="text-xl">{product?.name}</h1>
+            <p>{product?.description}</p>
+            <p>{"€" + product?.price}</p>
+          </div>
+          <div className="h-[100px] flex items-center justify-center w-[90vw]">
+            <Button variant="solid" color="primary" className="w-full">
+              Aggiungi al carrello
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

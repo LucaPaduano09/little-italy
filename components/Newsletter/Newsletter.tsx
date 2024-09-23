@@ -1,11 +1,14 @@
 "use client";
 import { Button, Image, Input } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { isMobile } from "react-device-detect";
+import Cookies from "js-cookie";
 
 const Newsletter = (props: any) => {
   const [timer, setTimer] = useState(false);
   const [email, setEmail] = useState("");
+  const checkNewsletterCookie = Cookies.get("newsletter_close");
 
   const handleNewsletterSubmit = async () => {
     // const existingUser = await User.findOne({ email: email });
@@ -16,8 +19,14 @@ const Newsletter = (props: any) => {
     // }
   };
 
+  const handleNewsletterClose = () => {
+    setTimer(false);
+    Cookies.set("newsletter_close", true, { expires: 7 });
+  };
+
   useEffect(() => {
     setTimeout(() => {
+      console.log(checkNewsletterCookie);
       setTimer(true);
     }, 3000);
   }, []);
@@ -25,6 +34,7 @@ const Newsletter = (props: any) => {
   return (
     <>
       {(!props.session || props?.session?.user?.newsletter !== true) &&
+        !checkNewsletterCookie &&
         timer && (
           <>
             <motion.div
@@ -37,17 +47,21 @@ const Newsletter = (props: any) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 1.3 }}
-              className="h-[580px] fixed z-50 w-[95vw] bg-white flex items-center justify-center flex-col bottom-2"
+              className="h-[580px] fixed z-50 w-[95vw] bg-white flex items-center justify-center flex-col bottom-2 lg:flex-row lg:h-fit lg:bottom-0 lg:top-[20%]"
             >
-              <div className="flex w-full flex-1">
+              <div className="flex w-full flex-1 h-fit">
                 <Image
                   src="./food-newsletter.jpg"
                   alt="image"
-                  style={{ width: "100%", height: "80%" }}
+                  style={
+                    isMobile
+                      ? { width: "100%", height: "80%" }
+                      : { width: "100%", height: "100%" }
+                  }
                   radius="none"
                 />
               </div>
-              <div className="flex flex-1 w-[90%] flex-col justify-start">
+              <div className="flex flex-1 w-[90%] flex-col justify-start lg: p-4">
                 <h1 className="text-lg m-0 p-0">Iscriviti alla newsletter</h1>
                 <h3>e ricevi subito il 15% di sconto sul tuo primo ordine</h3>
                 <div className="w-full flex-col flex items-center justify-center">
@@ -70,7 +84,7 @@ const Newsletter = (props: any) => {
               <button
                 className="absolute top-2 right-2 w-6 h-6 rounded bg-red-300 z-50 flex items-center justify-center"
                 onClick={() => {
-                  setTimer(false);
+                  handleNewsletterClose();
                 }}
               >
                 x

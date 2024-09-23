@@ -26,6 +26,7 @@ const Navbaro = (props: any) => {
     { title: "Home", href: "/" },
     { title: "Products", href: "/prodotti" },
     { title: "Support", href: "/" },
+    { title: "Cart", href: "/cart" },
     // "Dashboard",
     // "Activity",
     // "Analytics",

@@ -11,12 +11,26 @@ const config: Config = {
   theme: {
     extend: {
       height: {
-        "h-400": "400px",
+        "400": "400px",
+        "700": "700px",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      animation: {
+        spin: "spin 2s linear infinite",
+      },
+      keyframes: {
+        spin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
+      colors: {
+        "blue-500": "#3498db",
+        "gray-200": "#f3f3f3",
       },
     },
   },

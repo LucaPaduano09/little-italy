@@ -6,7 +6,7 @@ import React, { useState } from "react";
 const Page = () => {
   const [loginSelected, setLoginSelected] = useState<boolean>(true);
   const googleLogin = () => {
-    signIn("google", { callbackUrl: "/" });
+    signIn("google", { callbackUrl: "/checkout" });
   };
   const toggleSelected = () => {
     setLoginSelected(!loginSelected);

@@ -1,60 +1,49 @@
-"use client";
-import { Button, Image } from "@nextui-org/react";
-import { notFound, useParams, useSearchParams } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import { notFound } from "next/navigation";
+import React from "react";
+import ProductClient from "./ProductClient";
 
-const page = () => {
-  const params = useParams();
-  const { id } = params;
-  const [product, setProduct] = useState<any>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+// Tipi per TypeScript
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+}
 
-  useEffect(() => {
-    if (id) {
-      // Fetch the product data from your API
-      fetch(`http://localhost:3000/api/product/${id}`, {
-        method: "GET",
-        mode: "no-cors",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setProduct(data);
-          setLoading(false);
-          console.log(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching product:", error);
-          setError(error);
-          setLoading(false);
-        });
+// Funzione asincrona per ottenere i dati del prodotto lato server
+async function getProduct(id: string): Promise<Product | null> {
+  try {
+    const res = await fetch(`http://localhost:3000/api/product/${id}`);
+
+    if (!res.ok) {
+      return null;
     }
-  }, [id]);
+
+    const product: Product = await res.json();
+    return product;
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    return null;
+  }
+}
+
+// Componente server-side che fetcha i dati e li passa al componente client-side
+const ProductPage = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
+
+  const product = await getProduct(id);
+
+  if (!product) {
+    notFound(); // Se il prodotto non viene trovato, mostra la pagina 404
+  }
+
   return (
     <div className="mt-[4rem]">
-      {product && (
-        <div className="flex flex-col items-center justify-center">
-          <div>
-            <Image src={"/" + product?.image} />
-          </div>
-          <div className="w-[90vw]">
-            <h1 className="text-xl">{product?.name}</h1>
-            <p>{product?.description}</p>
-            <p>{"€" + product?.price}</p>
-          </div>
-          <div className="h-[100px] flex items-center justify-center w-[90vw]">
-            <Button variant="solid" color="primary" className="w-full">
-              Aggiungi al carrello
-            </Button>
-          </div>
-        </div>
-      )}
+      {/* Passiamo i dati del prodotto al componente client-side */}
+      <ProductClient product={product} />
     </div>
   );
 };
 
-export default page;
+export default ProductPage;

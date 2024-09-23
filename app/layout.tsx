@@ -21,13 +21,17 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
   let cartState = Cookies.get("cart");
+  console.log(cartState);
   return (
     <html lang="en" className="light">
       <body className={"w-[100vw] h-[100vh]"}>
         <Providers session={session}>
           <Navbaro session={session} />
           {children}
-          <CartButton itemsInCart={cartState} />
+          {
+            // @ts-ignore
+            <CartButton itemsInCart={cartState ? cartState : 0} />
+          }
         </Providers>
       </body>
     </html>

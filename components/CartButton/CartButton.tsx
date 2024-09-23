@@ -2,7 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { RiShoppingCartLine } from "react-icons/ri";
 
-const CartButton = ({ itemsInCart }) => {
+interface CartButtonProps {
+  itemsInCart: number; // Tipizzazione del numero di elementi nel carrello
+}
+
+const CartButton: React.FC<CartButtonProps> = ({ itemsInCart }) => {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {

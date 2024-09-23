@@ -11,7 +11,7 @@ const CheckoutPage = () => {
   useEffect(() => {
     const calculateTotal = () => {
       let total = cartItems.reduce(
-        (sum, item) => sum + item.price * item.quantity,
+        (sum: any, item: any) => sum + item.price * item.quantity,
         0
       );
       total += deliveryFees;

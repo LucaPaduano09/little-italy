@@ -33,10 +33,11 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
 
   const product = await getProduct(id);
+  console.log(product);
 
-  // if (!product) {
-  //   notFound(); // Se il prodotto non viene trovato, mostra la pagina 404
-  // }
+  if (!product) {
+    notFound(); // Se il prodotto non viene trovato, mostra la pagina 404
+  }
 
   return (
     <div className="mt-[4rem]">

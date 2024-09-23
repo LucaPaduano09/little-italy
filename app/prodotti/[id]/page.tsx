@@ -14,7 +14,7 @@ interface Product {
 // Funzione asincrona per ottenere i dati del prodotto lato server
 async function getProduct(id: string): Promise<Product | null> {
   try {
-    const res = await fetch(`env.BASE_ENDOPOINTproduct/${id}`);
+    const res = await fetch(process.env.BASE_ENDOPOINT + `/product/${id}`);
 
     if (!res.ok) {
       return null;

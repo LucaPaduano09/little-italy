@@ -4,7 +4,7 @@ import Product from "../../../../models/Product";
 
 export const GET = async (req, res) => {
   const url = req.url;
-  const id = url.replace("env.BASE_ENDOPOINTproduct/", "");
+  const id = url.replace(process.env.BASE_ENDPOINT + "/product/", "");
   if (!id) {
     return new NextResponse("Id non passato", { status: 400 });
   }

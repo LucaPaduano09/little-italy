@@ -42,6 +42,7 @@ const CheckoutPage = () => {
 
   return (
     <PayPalScriptProvider
+      //@ts-ignore
       options={{
         "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
         currency: "EUR", // Specifica la valuta qui

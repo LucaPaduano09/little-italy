@@ -12,7 +12,7 @@ import React from "react";
 const Products = () => {
   return (
     <>
-      <div className="mt-[5rem] mb-4 text-2xl w-full text-left p-2">New's</div>
+      <div className="mt-[5rem] mb-4 text-2xl w-full text-left p-2">New s</div>
       <Card
         isFooterBlurred
         className="w-[97%] h-[300px] col-span-12 p-1 lg:h-[600px]"

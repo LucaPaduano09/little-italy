@@ -40,8 +40,8 @@ const Page = () => {
   };
 
   const uniqueItems = useMemo(() => {
-    return cartState.reduce((acc, item) => {
-      const existingItem = acc.find((i) => i._id === item._id);
+    return cartState.reduce((acc: any, item: any) => {
+      const existingItem = acc.find((i: any) => i._id === item._id);
       if (existingItem) {
         existingItem.quantity += item.quantity; // Incrementa la quantità
       } else {

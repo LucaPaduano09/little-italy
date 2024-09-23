@@ -21,7 +21,7 @@ const Newsletter = (props: any) => {
 
   const handleNewsletterClose = () => {
     setTimer(false);
-    Cookies.set("newsletter_close", true, { expires: 7 });
+    Cookies.set("newsletter_close", "true", { expires: 7 });
   };
 
   useEffect(() => {

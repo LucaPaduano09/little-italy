@@ -4,7 +4,7 @@ import { Select, SelectItem, SelectSection } from "@nextui-org/react";
 import SelectComponent from "@/components/SelectComponent/SelectComponent";
 
 async function getProducts() {
-  const res = await fetch(process.env.BASE_ENDOPOINT + "products", {
+  const res = await fetch(`${process.env.BASE_ENDOPOINT}` + "products", {
     cache: "no-store",
   });
   if (!res.ok) {

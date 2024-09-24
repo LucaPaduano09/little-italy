@@ -23,6 +23,6 @@ export const GET = async (req, res) => {
     }
   } catch (error) {
     console.error("Error fetching product:", error);
-    return new NextResponse("Inernal error", { status: 500 });
+    return new NextResponse("Internal error: " + error, { status: 500 });
   }
 };

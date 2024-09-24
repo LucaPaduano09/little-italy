@@ -2,12 +2,10 @@ import { NextResponse } from "next/server";
 import connect from "../../../../db";
 import Product from "../../../../models/Product";
 
-export const GET = async (req, res) => {
-  const url = req.url;
-  const id = url.replace(
-    `${process.env.NEXT_PUBLIC_BASE_ENDPOINT}` + "/product/",
-    ""
-  );
+export const GET = async (req) => {
+  const url = new URL(req.url);
+  const id = url.pathname.split("/").pop(); // Ottieni solo l'ID dal percorso
+
   if (!id) {
     return new NextResponse("Id non passato", { status: 400 });
   }
@@ -15,7 +13,7 @@ export const GET = async (req, res) => {
   try {
     await connect();
     const product = await Product.findById(id);
-    console.log(id);
+
     if (product) {
       return new NextResponse(JSON.stringify(product), { status: 200 });
     } else {
@@ -23,6 +21,6 @@ export const GET = async (req, res) => {
     }
   } catch (error) {
     console.error("Error fetching product:", error);
-    return new NextResponse("Internal error: " + error, { status: 500 });
+    return new NextResponse("Internal server error", { status: 500 });
   }
 };
